@@ -5,10 +5,10 @@ LANGUAGE = 'RU' # EN - english, RU - russian
 DEBUG = False # if True - turned on debug, if False - turned off debug (Enables send all python errors to you.)
 
 # Bot's token
-TOKEN = "6894148757:AAFZTOgtT1I3el7ASOfo2npJWIW1VKXRpYQ"
+TOKEN = "yourtroll:tokenbot"
 
 # WatchDogBot's token
-WATCHDOGTOKEN = "6359777958:AAEHPY-ghfRuTtzqUK1F3Fsi09E4ruZummc"
+WATCHDOGTOKEN = "yourtroll:watchdogtoken"
 
 # audio files
 MUSIC1 = "music.mp3" # music.mp3 for example
