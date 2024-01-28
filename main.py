@@ -180,8 +180,8 @@ def volumemin(message):
 @bot.message_handler(commands=["camera", "cam"])
 def camera(message):
 	cam = cv2.VideoCapture(0)
-	cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-	cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+	cam.set(cv2.CAP_PROP_FRAME_WIDTH, cfg.CAMERAWIDTH)
+	cam.set(cv2.CAP_PROP_FRAME_HEIGHT, cfg.CAMERAHEIGHT)
 	ret, frame = cam.read()
 
 	cv2.imwrite('C:\Windows\Temp\camera.png', frame)
