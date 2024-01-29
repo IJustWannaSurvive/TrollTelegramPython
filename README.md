@@ -48,6 +48,18 @@ pip --version
 ```
 If haven't errors then look next step, if have errors, search solution in google.
 
+Install all required libriries
+```sh
+pip install pyautogui
+pip install tabulate
+pip install pytelegrambotapi
+pip install pyglet
+pip install psutil
+pip install opencv-python
+pip install pynput
+pip install pillow
+```
+
 Install 'auto py to exe'
 ```sh
 pip install auto-py-to-exe
